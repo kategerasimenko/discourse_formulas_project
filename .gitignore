@@ -15,6 +15,8 @@ $RECYCLE.BIN/
 *.msp
 
 texts
+__pycache__
+processed
 
 # Windows shortcuts
 *.lnk

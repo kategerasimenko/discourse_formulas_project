@@ -60,7 +60,7 @@ def regstr_splitters():
     regstr = '(?:'
     one_symbols = '['
     splitters = ['\.',',','\?','!',' -','\:',';',' ?или',' ?и','\}','\{',' -- ',
-                 '\(','\)', '\n+','…','"','—','–','»','«','[0-9]+','[A-z]+']
+                 '\(','\)', '\n+','…','"','—','–','»','«','“','”','[0-9]+','[A-z]+']
     for spl in splitters:
         if len(spl) == 1 or ('\\' in spl and len(spl) == 2) :
             one_symbols += spl[-1]
@@ -102,7 +102,7 @@ def names_contexts(text,table,formula_table,etiquette):
                     context = 'context not found'
                 else:
                     cl_context = phrase.group()
-                    context_re = re.search('[.…!?]{1,3} ?[–—»)]?\s*?((?:[«(А-яЁёA-z0-9][^.…!?]*?[.…!?]{1,3}[»)]?\s*?){2}[^.…!?]*?'+re.escape(cl_context)+')',text)
+                    context_re = re.search('[.…!?]{1,3} ?[–—»)”]?\s*?((?:[«“(А-яЁёA-z0-9][^.…!?]*?[.…!?]{1,3}[»)”]?\s*?){2}[^.…!?]*?'+re.escape(cl_context)+')',text)
                     if context_re is not None:
                         context = context_re.group(1)
                     else:

@@ -3,9 +3,9 @@ from collections import deque, OrderedDict
 import html
 
 def PREP_delete_speakers (text,repl = ''):
-    new_text = re.sub('\n[\t ]*[А-ЯЁ ]+?(?: ?\(.+?\))? ?[.:]', '\n'+repl, text)
+    new_text = re.sub('\n[ ]*[А-ЯЁ ]+?(?: ?\(.+?\))? ?[.:]', '\n'+repl, text)
     if len(new_text) > len(text) - 500:
-        new_text = re.sub('\n[\t ]*[А-яЁё]+?(?: ?\(.+?\))? ?[.:]','\n'+repl,text)
+        new_text = re.sub('\n[ ]*[А-яЁё]+?(?: ?\(.+?\))? ?[.:]','\n'+repl,text)
     return new_text
 
 

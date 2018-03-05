@@ -21,7 +21,7 @@ if razm == 'y':
     writer.writerow(row0)
     csvtarget.close()
     
-    delete_non_formulas()
+    #delete_non_formulas()
 
 else:
     csvdata = open('test_data.csv', 'w', encoding='utf-8-sig')
@@ -51,7 +51,7 @@ for filename in filenames:
         disc_target = []
 
         for j in linedtext.lines:
-            curlinesplitted = splitbylist(j, ['.',',','?','!',' - ',':',';',' или ',' и ','(',')', '\n','…','"','—',' – ','»'])
+            curlinesplitted = splitbylist(j, ['.',',','?','!',' - ',':',';',' или ',' и ','(',')', '\n','…','"','—',' – ','»','”'])
             firstalreadybeen = False
             firstthree = 1
             for i in curlinesplitted:
@@ -71,7 +71,7 @@ for filename in filenames:
 
         writer = csv.writer(csvdata, delimiter=';', quotechar='"', lineterminator='\n', quoting=csv.QUOTE_NONNUMERIC)
         for n in range(len(allpseudoclauses)):
-            new_words = allpseudoclauses[n].text.strip('.,?!-:;()…"—–«»{}').strip()
+            new_words = allpseudoclauses[n].text.strip('.,?!-:;()…"—–{}«»“”/\\').strip()
             row = [filename[:-4], new_words, len(new_words.split())]
 
             if len(allpseudoclauses[n].subject) > 0:

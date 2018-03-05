@@ -6,6 +6,7 @@ def get_data(rawtext,filename,delete_speakers):
     data = [['Text_id', 'Text']]
     
     rawtext = html.unescape(rawtext)
+    rawtext = rawtext.replace('¬','')
     if delete_speakers:
         rawtext = PREP_delete_speakers(rawtext)
     linedtext = TextByLines(rawtext)

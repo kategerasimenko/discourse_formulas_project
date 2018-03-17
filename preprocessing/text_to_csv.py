@@ -51,7 +51,7 @@ for filename in filenames:
         disc_target = []
 
         for j in linedtext.lines:
-            curlinesplitted = splitbylist(j, ['.',',','?','!',' - ',':',';',' или ',' и ','(',')', '\n','…','"','—',' – ','»','”'])
+            curlinesplitted = splitbylist(j, ['.',',','?','!',' - ',':',';','(',')', '\n','…','"','—',' – ','»','”'])
             firstalreadybeen = False
             firstthree = 1
             for i in curlinesplitted:

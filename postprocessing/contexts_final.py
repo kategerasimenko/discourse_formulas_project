@@ -11,10 +11,10 @@ def get_table(filename):
 
 
 def PREP_delete_speakers (text):
-    new_text = re.sub('\n[\t ]*[А-ЯЁ ]+?(?: ?\(.+?\))?[.:]', '\n', text)
+    new_text = re.sub('\n *[А-ЯЁ ]+?(?: ?\(.+?\))?[.:]', '\n', text)
     if len(new_text) > len(text) - 500:
         print('speakers not in uppercase')
-        new_text = re.sub('\n[\t ]*[А-яЁё]+?(?: ?\(.+?\))?[.:]','\n',text)
+        new_text = re.sub('\n *[А-яЁё]+?(?: ?\(.+?\))?[.:]','\n',text)
     return new_text
 
 
@@ -59,7 +59,7 @@ def regstr(formula):
 def regstr_splitters():
     regstr = '(?:'
     one_symbols = '['
-    splitters = ['\.',',','\?','!',' -','\:',';',' ?или',' ?и','\}','\{',' -- ',
+    splitters = ['\.',',','\?','!',' -','\:',';','\}','\{',' -- ',
                  '\(','\)', '\n+','…','"','—','–','»','«','“','”','[0-9]+','[A-z]+']
     for spl in splitters:
         if len(spl) == 1 or ('\\' in spl and len(spl) == 2) :
@@ -91,12 +91,12 @@ def names_contexts(text,table,formula_table,etiquette):
                 context = 'no context'
             else:
                 if n == 1:
-                    re_cl_context = regstr(del_conj(table[n-1][1]))+' ?'+spl+'{1,3}\\s*?'+\
-                                    spl+'{0,3} ?'+regstr(del_conj(row[1]))+' ?'+spl
+                    re_cl_context = regstr(table[n-1][1]))+' ?'+spl+'{1,3}\\s*?'+\
+                                    spl+'{0,3} ?'+regstr(row[1])+' ?'+spl
                 else:
-                    re_cl_context = regstr(del_conj(table[n-2][1]))+' ?'+spl+'{1,3}\\s*?'+\
-                                    spl+'{0,3} ?'+regstr(del_conj(table[n-1][1]))+' ?'+spl+'{1,3}\\s*?'+\
-                                    spl+'{0,3} ?'+regstr(del_conj(row[1]))+' ?'+spl
+                    re_cl_context = regstr(table[n-2][1])+' ?'+spl+'{1,3}\\s*?'+\
+                                    spl+'{0,3} ?'+regstr(table[n-1][1])+' ?'+spl+'{1,3}\\s*?'+\
+                                    spl+'{0,3} ?'+regstr(row[1])+' ?'+spl
                 phrase = re.search(re_cl_context,text)
                 if not phrase:
                     context = 'context not found'
